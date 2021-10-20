@@ -2,8 +2,12 @@
 let arr = []
 let currColors = []
 let stopC = 0
+let wide;
+let tall;
+let free = 1;
 function initialize(){
     rectMode(CENTER)
+    
     arr = [];
     currColors = random(palettes);
     background(currColors[0]);
@@ -14,20 +18,16 @@ function initialize(){
 }
 
 // Canvas Size
-let wide = 1300;
-let tall = 800;
+
 function setup() {
+    wide = window.innerWidth;
+    tall = window.innerHeight;
     let cnv = createCanvas(wide,tall);
     cnv.mouseClicked(add);
-    cnv.position(windowWidth/2 - wide/2, windowHeight/5);
-    
+    let cc = document.getElementById('defaultCanvas0')
 
-    let button = createButton("reset");
-    button.mousePressed(reset);
-    button.position(windowWidth/16, windowHeight/16);
-    button.position(windowWidth/2-60, 60);
-    button.size(100, 40);
-
+    document.body.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
 
     initialize();   
 }
@@ -36,6 +36,7 @@ function setup() {
 function reset(){
     initialize();
     loop();
+    free = 1;
 }
 
 // Utility function to spawn shapes inside a circle
@@ -76,3 +77,9 @@ function draw() {
     
 }
 
+function mouseClicked(){
+    
+    if (free==1 && mouseButton === LEFT) {
+        reset();
+    }
+}

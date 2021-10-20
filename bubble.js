@@ -43,8 +43,8 @@ class Shape{
         rotate(this.ang);
 
 
-        // rect(0,0, this.r, this.r);
-        circle(0,0,this.r);
+        rect(0,0, this.r, this.r, 5);
+        // circle(0,0,this.r);
         pop();
     }
 
